@@ -1,0 +1,133 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+//To migrate this file use the command: npx prisma migrate dev
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  lastname String?
+  posts Post[]
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model trabajos{
+  id Int @id @default(autoincrement())
+  descripcion String
+  sueldo Int
+  idtrabajo personaje_tiene_trabajo[]
+}
+
+model personaje_tiene_trabajo{
+  id_trabajo Int
+  id_personaje Int
+  fecha_inicio DateTime
+  fecha_termino DateTime
+  @@id([id_trabajo,id_personaje])
+  idtrabajo trabajos @relation(fields: [id_trabajo],references: [id])
+  idpersonaje personajes @relation(fields: [id_personaje], references: [id])
+}
+
+model personajes{
+  id Int @id @default(autoincrement())
+  nombre String
+  fuerza Int
+  fecha_nacimiento DateTime
+  objeto String
+  kart karts[]
+  idpersonaje personaje_tiene_trabajo[]
+  idpersonaje_reino personaje_habita_reino[]
+  
+  
+}
+
+model personaje_habita_reino{
+  id_personaje Int
+  id_reino Int
+  fecha_registro DateTime
+  es_gobernante Boolean
+  @@id([id_personaje,id_reino])
+  idpersonaje_reino personajes @relation(fields: [id_personaje],references: [id])
+  reino_personaje reinos @relation(fields: [id_reino],references: [id])
+
+
+
+
+}
+
+model karts{
+  id Int @id @default(autoincrement())
+  modelo String
+  color String
+  velocidad_maxima Int
+  id_personaje Int
+  kart personajes? @relation(fields: [id_personaje], references: [id])
+}
+
+model defensas{
+  id Int @id @default(autoincrement())
+  defensa String
+  defensas_reinos defensas_entre_reinos[]
+
+}
+
+//TABLA INTERSECCION ENTRE DEFENSAS Y REINOS
+model defensas_entre_reinos{
+  defensas_id Int
+  defensas defensas @relation(fields: [defensas_id], references: [id])
+  reinos_id Int
+  reinos reinos @relation(fields: [reinos_id],references: [id])
+  @@id([defensas_id,reinos_id])
+}
+
+
+
+model reinos{
+  id Int @id @default(autoincrement())
+  nombre String
+  ubicacion String
+  superficie Int
+
+  defensas_reinos defensas_entre_reinos[]
+  reino_personaje personaje_habita_reino[]
+  diplomacia1 diplomacias[] @relation("reino1relacion")
+  diplomacia2 diplomacias[] @relation("reino2relacion")
+  
+}
+
+model diplomacias{
+  id_reino_1 Int
+  id_reino_2 Int
+  es_aliado Boolean
+  @@id([id_reino_1,id_reino_2])
+  reino1 reinos @relation("reino1relacion",fields: [id_reino_1],references: [id])
+  reino2 reinos @relation("reino2relacion",fields: [id_reino_2],references: [id])
+}
+
+
+
+
+
+
+
+
+
+
