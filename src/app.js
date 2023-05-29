@@ -1,9 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
-import UsersController from './controllers/UsersController.js';
 import TrabajosController from './controllers/TrabajosController.js';
 import PersonajesController from './controllers/PersonajesController.js';
 import TrabajadorController from './controllers/TrabajadorController.js';
+import KartsController from './controllers/KartsController.js';
 
 
 
@@ -15,10 +15,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //endpoints(Routes)
-app.get('/users', UsersController.getUsers)
-app.get('/users/:id', UsersController.getUserById)
-app.post('/users', UsersController.createUser)
-app.get('/users/:id/posts', UsersController.usersPosts)
 
 app.get("/trabajos", TrabajosController.getTrabajos)
 app.post("/trabajos", TrabajosController.postTrabajos)
@@ -31,6 +27,12 @@ app.get("/personajes/:id", PersonajesController.getPersonaje)
 app.get("/personajes", PersonajesController.getPersonajes)
 app.put("/personajes/:id", PersonajesController.putPersonaje)
 app.delete("/personajes/:id", PersonajesController.delPersonaje)
+
+app.post("/karts", KartsController.postKarts)
+app.get("/karts/:id", KartsController.getKart)
+app.get("/karts", KartsController.getKarts)
+app.put("/karts/:id", KartsController.putKart)
+app.delete("/karts/:id", KartsController.delKart)
 
 app.post("/personaje_tiene_trabajo", TrabajadorController.postTrabajador)
 app.get("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.getTrabajador)
