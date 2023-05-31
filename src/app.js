@@ -4,7 +4,8 @@ import UsersController from './controllers/UsersController.js';
 import TrabajosController from './controllers/TrabajosController.js';
 import PersonajesController from './controllers/PersonajesController.js';
 import TrabajadorController from './controllers/TrabajadorController.js';
-
+import ReinosController from './controllers/ReinosController.js';
+import HabitanteController from './controllers/HabitanteController.js';
 
 
 const ENV = process.env;
@@ -34,6 +35,18 @@ app.delete("/personajes/:id", PersonajesController.delPersonaje)
 
 app.post("/personaje_tiene_trabajo", TrabajadorController.postTrabajador)
 app.get("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.getTrabajador)
+app.get("/personaje_tiene_trabajo", TrabajadorController.getTrabajadores)
+app.put("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.putTrabajador)
+app.delete("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.delTrabajador)
+
+app.post("/reinos", ReinosController.postReino)
+app.get("/reinos", ReinosController.getReinos)
+app.get("/reinos/:id", ReinosController.getReino)
+app.put("/reinos/:id", ReinosController.putReino)
+app.delete("/reinos/:id", ReinosController.delReino)
+
+
+app.post("/personaje_habita_reino" , HabitanteController.postHabitante)
 
 //==========================================================//
 app.get('/', (req, res) => {
