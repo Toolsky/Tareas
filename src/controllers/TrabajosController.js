@@ -39,7 +39,7 @@ const putTrabajo = async(req,res) => {
     }
 }
 
-const removeTrabajo = async(req,res) => {
+const delTrabajo = async(req,res) => {
     try {
         let id = Number(req.params.id)
         await prisma.trabajos.delete({where: {id,}})
@@ -58,7 +58,7 @@ const TrabajosController = {
     postTrabajos,
     getTrabajo,
     putTrabajo,
-    removeTrabajo
+    delTrabajo
 }
 
 export default TrabajosController

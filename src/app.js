@@ -4,8 +4,8 @@ import TrabajosController from './controllers/TrabajosController.js';
 import PersonajesController from './controllers/PersonajesController.js';
 import TrabajadorController from './controllers/TrabajadorController.js';
 import KartsController from './controllers/KartsController.js';
-
-
+//import DiplomaciasController from './controllers/DiplomaciasController.js';
+import DefensasController from './controllers/DefensasController.js';
 
 const ENV = process.env;
 const app = express();
@@ -20,7 +20,19 @@ app.get("/trabajos", TrabajosController.getTrabajos)
 app.post("/trabajos", TrabajosController.postTrabajos)
 app.get("/trabajos/:id" , TrabajosController.getTrabajo)
 app.put("/trabajos/:id", TrabajosController.putTrabajo)
-app.delete("/trabajos/:id", TrabajosController.removeTrabajo)
+app.delete("/trabajos/:id", TrabajosController.delTrabajo)
+/*
+app.get("/diplomacias", DiplomaciasController.getDiplomacias)
+app.post("/diplomacias", DiplomaciasController.postDiplomacia)
+app.get("/diplomacias/:id_r1/:id_r2" , DiplomaciasController.getDiplomacia)
+app.put("/diplomacias/:id_r1/:id_r2", DiplomaciasController.putDiplomacia)
+app.delete("/diplomacias/:id_r1/:id_r2", DiplomaciasController.delDiplomacia)
+*/
+app.get("/defensas", DefensasController.getDefensas)
+app.post("/defensas", DefensasController.postDefensa)
+app.get("/defensas/:id" , DefensasController.getDefensa)
+app.put("/defensas/:id", DefensasController.putDefensa)
+app.delete("/defensas/:id", DefensasController.delDefensa)
 
 app.post("/personajes", PersonajesController.postPersonaje)
 app.get("/personajes/:id", PersonajesController.getPersonaje)

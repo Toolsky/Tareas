@@ -4,7 +4,7 @@ const postKarts = async (req,res) => {
     try {
         const {modelo, color, velocidad_maxima, id_personaje} = req.body 
         const karts = await prisma.karts.create({
-            data: {modelo, color, velocidad_maxima, id_personaje}
+            data: {modelo, color, velocidad_maxima, id_personaje : {connect : {id:id_personaje}}}
         })
         res.json(karts)
         res.status(200).send("Kart creado correctamente")    
