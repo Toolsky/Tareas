@@ -52,7 +52,7 @@ model personajes{
   fuerza Int
   fecha_nacimiento DateTime
   objeto String
-  kart karts[]
+  karts karts[]
   idpersonaje personaje_tiene_trabajo[]
   idpersonaje_reino personaje_habita_reino[]
   
@@ -79,7 +79,7 @@ model karts{
   color String
   velocidad_maxima Int
   id_personaje Int
-  kart personajes? @relation(fields: [id_personaje], references: [id])
+  personajes personajes? @relation(fields: [id_personaje], references: [id])
 }
 
 model defensas{

@@ -35,10 +35,11 @@ app.put("/defensas/:id", DefensasController.putDefensa)
 app.delete("/defensas/:id", DefensasController.delDefensa)
 
 app.post("/personajes", PersonajesController.postPersonaje)
-app.get("/personajes/:id", PersonajesController.getPersonaje)
+//app.get("/personajes/:id", PersonajesController.getPersonaje)
 app.get("/personajes", PersonajesController.getPersonajes)
 app.put("/personajes/:id", PersonajesController.putPersonaje)
 app.delete("/personajes/:id", PersonajesController.delPersonaje)
+app.get("/personajes/:id", PersonajesController.obtenerauto)
 
 app.post("/karts", KartsController.postKarts)
 app.get("/karts/:id", KartsController.getKart)

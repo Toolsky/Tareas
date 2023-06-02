@@ -25,6 +25,19 @@ const getPersonaje = async (req,res) => {
     } 
 }
 
+async function obtenerauto(id_personaje) {
+    const personajes = await prisma.personajes.findUnique({
+      where: { id: id_personaje},
+      include: { karts: true }
+    });
+  
+    if (personajes?.karts) {
+      return personajes.karts;
+    } else {
+      return null; // No se encontró un automóvil relacionado
+    }
+  }
+
 const getPersonajes = async(req,res) => {
     try {
         const personajes = await prisma.personajes.findMany()
@@ -63,7 +76,8 @@ const PersonajesController = {
     getPersonaje ,
     getPersonajes,
     putPersonaje,
-    delPersonaje
+    delPersonaje,
+    obtenerauto
 }
 
 export default PersonajesController
