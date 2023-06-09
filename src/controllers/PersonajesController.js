@@ -25,6 +25,8 @@ const getPersonaje = async (req,res) => {
     } 
 }
 
+
+
 const getPersonajes = async(req,res) => {
     try {
         const personajes = await prisma.personajes.findMany()
