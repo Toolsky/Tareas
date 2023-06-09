@@ -6,6 +6,7 @@ import PersonajesController from './controllers/PersonajesController.js';
 import TrabajadorController from './controllers/TrabajadorController.js';
 import ReinosController from './controllers/ReinosController.js';
 import HabitanteController from './controllers/HabitanteController.js';
+import DiplomaciasController from './controllers/DiplomaciasController.js';
 
 
 const ENV = process.env;
@@ -47,6 +48,16 @@ app.delete("/reinos/:id", ReinosController.delReino)
 
 
 app.post("/personaje_habita_reino" , HabitanteController.postHabitante)
+app.get("/personaje_habita_reino" , HabitanteController.getHabitantes)
+app.delete("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.delHabitante)
+app.put("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.putHabitante)
+app.get("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.getHabitante)
+
+app.post("/diplomacias", DiplomaciasController.postDiplomacia)
+app.get("/diplomacias", DiplomaciasController.getDiplomacias)
+app.get("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.getDiplomacia)
+app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDiplomacia)
+app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 //==========================================================//
 app.get('/', (req, res) => {
