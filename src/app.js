@@ -3,9 +3,16 @@ import morgan from 'morgan';
 import TrabajosController from './controllers/TrabajosController.js';
 import PersonajesController from './controllers/PersonajesController.js';
 import TrabajadorController from './controllers/TrabajadorController.js';
+<<<<<<< HEAD
 import KartsController from './controllers/KartsController.js';
 //import DiplomaciasController from './controllers/DiplomaciasController.js';
 import DefensasController from './controllers/DefensasController.js';
+=======
+import ReinosController from './controllers/ReinosController.js';
+import HabitanteController from './controllers/HabitanteController.js';
+import DiplomaciasController from './controllers/DiplomaciasController.js';
+
+>>>>>>> Mati
 
 const ENV = process.env;
 const app = express();
@@ -49,6 +56,28 @@ app.delete("/karts/:id", KartsController.delKart)
 
 app.post("/personaje_tiene_trabajo", TrabajadorController.postTrabajador)
 app.get("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.getTrabajador)
+app.get("/personaje_tiene_trabajo", TrabajadorController.getTrabajadores)
+app.put("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.putTrabajador)
+app.delete("/personaje_tiene_trabajo/:id_tra/:id_per", TrabajadorController.delTrabajador)
+
+app.post("/reinos", ReinosController.postReino)
+app.get("/reinos", ReinosController.getReinos)
+app.get("/reinos/:id", ReinosController.getReino)
+app.put("/reinos/:id", ReinosController.putReino)
+app.delete("/reinos/:id", ReinosController.delReino)
+
+
+app.post("/personaje_habita_reino" , HabitanteController.postHabitante)
+app.get("/personaje_habita_reino" , HabitanteController.getHabitantes)
+app.delete("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.delHabitante)
+app.put("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.putHabitante)
+app.get("/personaje_habita_reino/:id_personaje/:id_reino", HabitanteController.getHabitante)
+
+app.post("/diplomacias", DiplomaciasController.postDiplomacia)
+app.get("/diplomacias", DiplomaciasController.getDiplomacias)
+app.get("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.getDiplomacia)
+app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDiplomacia)
+app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 //==========================================================//
 app.get('/', (req, res) => {

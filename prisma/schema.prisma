@@ -67,10 +67,6 @@ model personaje_habita_reino{
   @@id([id_personaje,id_reino])
   idpersonaje_reino personajes @relation(fields: [id_personaje],references: [id])
   reino_personaje reinos @relation(fields: [id_reino],references: [id])
-
-
-
-
 }
 
 model karts{

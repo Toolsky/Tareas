@@ -32,7 +32,7 @@ const putTrabajo = async(req,res) => {
     try {
         let _id = Number(req.params.id)
         let {oficio,paga} = req.body
-        const update = await prisma.trabajos.update({ where: { id : _id} , data: {descripcion : oficio , sueldo : paga}})
+        await prisma.trabajos.update({ where: { id : _id} , data: {descripcion : oficio , sueldo : paga}})
         res.status(200).send("Usuario actualizado de pana")
     } catch (error) {
     res.status(400).send("No se pudo actualizar el trabajo")
