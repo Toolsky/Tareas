@@ -77,7 +77,7 @@ app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDipl
 app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 app.get("/api/top5personajesConMasFuerza", ApiController.mas_fuertes)
-
+app.get("/api/personajeConMasKarts",ApiController.mas_karts)
 //==========================================================//
 app.get('/', (req, res) => {
     res.json({ message: 'Hello world' });
