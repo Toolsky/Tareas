@@ -8,8 +8,7 @@ import DefensasController from './controllers/DefensasController.js';
 import ReinosController from './controllers/ReinosController.js';
 import HabitanteController from './controllers/HabitanteController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
-import DefensaInReinos from './controllers/DefensaInReinos.js';
-
+import ApiController from './controllers/ApiController.js';
 
 const ENV = process.env;
 const app = express();
@@ -33,10 +32,11 @@ app.put("/defensas/:id", DefensasController.putDefensa)
 app.delete("/defensas/:id", DefensasController.delDefensa)
 
 app.post("/personajes", PersonajesController.postPersonaje)
-//app.get("/personajes/:id", PersonajesController.getPersonaje)
+app.get("/personajes/:id", PersonajesController.getPersonaje)
 app.get("/personajes", PersonajesController.getPersonajes)
 app.put("/personajes/:id", PersonajesController.putPersonaje)
 app.delete("/personajes/:id", PersonajesController.delPersonaje)
+
 
 app.post("/karts", KartsController.postKarts)
 app.get("/karts/:id", KartsController.getKart)
@@ -56,12 +56,6 @@ app.get("/reinos/:id", ReinosController.getReino)
 app.put("/reinos/:id", ReinosController.putReino)
 app.delete("/reinos/:id", ReinosController.delReino)
 
-app.post("/defensainreinos",DefensaInReinos.postDefensa_entre_reinos)
-app.get("/defensainreinos",DefensaInReinos.getDefensas_entre_reinos)
-app.get("/defensainreinos/:defensas_id/:reinos_id",DefensaInReinos.getDefensa_entre_reinos)
-app.put("/defensainreinos/:defensas_id/:reinos_id",DefensaInReinos.putDefensa_entre_reinos)
-app.delete("/defensasinreinos/:defensas_id/:reinos_id",DefensaInReinos.delDefensa_de_reino)
-
 
 app.post("/personaje_habita_reino" , HabitanteController.postHabitante)
 app.get("/personaje_habita_reino" , HabitanteController.getHabitantes)
@@ -74,6 +68,8 @@ app.get("/diplomacias", DiplomaciasController.getDiplomacias)
 app.get("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.getDiplomacia)
 app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDiplomacia)
 app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
+
+app.get("/api/top5personajesConMasFuerza", ApiController.mas_fuertes)
 
 //==========================================================//
 app.get('/', (req, res) => {
