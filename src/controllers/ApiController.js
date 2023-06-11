@@ -3,7 +3,11 @@ import prisma from '../prismaClient.js'
 const mas_fuertes= async (req,res) => {
     try {
         const mas_fuertes = await prisma.personajes.findMany({
+<<<<<<< HEAD
             select: {nombre: true ,fuerza : false},
+=======
+            select: {nombre: true ,fuerza : true},
+>>>>>>> Mati
             orderBy : {fuerza : 'desc'},
             take : 5
         })
@@ -20,6 +24,7 @@ const mas_fuertes= async (req,res) => {
 
 
 
+<<<<<<< HEAD
 const mas_karts = async (req, res) => {
     try {
       const pj = await prisma.personajes.findMany({
@@ -50,6 +55,10 @@ const mas_karts = async (req, res) => {
 const ApiController = {
     mas_fuertes,
     mas_karts
+=======
+const ApiController = {
+    mas_fuertes
+>>>>>>> Mati
 }
 
 

@@ -9,7 +9,14 @@ import ReinosController from './controllers/ReinosController.js';
 import HabitanteController from './controllers/HabitanteController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
 import ApiController from './controllers/ApiController.js';
+<<<<<<< HEAD
 import DefensaInReinos from './controllers/DefensaInReinos.js';
+=======
+<<<<<<< HEAD
+=======
+import DefensaInReinos from './controllers/DefensaInReinos.js';
+>>>>>>> ola
+>>>>>>> Mati
 
 const ENV = process.env;
 const app = express();
@@ -77,7 +84,11 @@ app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDipl
 app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 app.get("/api/top5personajesConMasFuerza", ApiController.mas_fuertes)
+<<<<<<< HEAD
 app.get("/api/personajeConMasKarts",ApiController.mas_karts)
+=======
+
+>>>>>>> Mati
 //==========================================================//
 app.get('/', (req, res) => {
     res.json({ message: 'Hello world' });
