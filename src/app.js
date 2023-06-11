@@ -9,6 +9,7 @@ import ReinosController from './controllers/ReinosController.js';
 import HabitanteController from './controllers/HabitanteController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
 import ApiController from './controllers/ApiController.js';
+import DefensaInReinos from './controllers/DefensaInReinos.js';
 
 const ENV = process.env;
 const app = express();
@@ -18,6 +19,12 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //endpoints(Routes)
+
+app.get("/defensainreinos", DefensaInReinos.getDefensas_entre_reinos)
+app.get("/defensainreinos/:defensas_id/:reinos_id",DefensaInReinos.getDefensa_entre_reinos)
+app.post("/defensainreinos",DefensaInReinos.postDefensa_entre_reinos)
+app.put("/defensainreinos/:defensas_id/:reinos_id",DefensaInReinos.putDefensa_entre_reinos)
+app.delete("/defensainreinos/:defensas_id/:reinos_id",DefensaInReinos.delDefensa_de_reino)
 
 app.get("/trabajos", TrabajosController.getTrabajos)
 app.post("/trabajos", TrabajosController.postTrabajos)
