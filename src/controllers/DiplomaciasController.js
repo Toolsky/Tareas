@@ -1,5 +1,7 @@
 import prisma from '../prismaClient.js';
 
+
+//La funcion se encarga de que no se pueden crear dos diplomacias iguales con los reinos invertidos (no tendría sentido).
 const postDiplomacia = async (req,res) => {
     try {
         const {id_reino_1,id_reino_2,es_aliado} = req.body
@@ -7,7 +9,7 @@ const postDiplomacia = async (req,res) => {
             where : {id_reino_1_id_reino_2 : {id_reino_1 : id_reino_2,id_reino_2 : id_reino_1}}
         })
         if(reinos_invertidos){
-            return res.status(400).send("Aweonao deja de entregar una entidad existente")
+            return res.status(400).send("Entregaste una entidad que ya existe con los reinos invertidos")
         }
         await prisma.diplomacias.create({
             data: {
@@ -26,10 +28,11 @@ const getDiplomacias = async (req,res) => {
         const diplomacias = await prisma.diplomacias.findMany()
         res.json(diplomacias)
     } catch (error) {
-        res.status(400).send("No se pudo obtener ")
+        res.status(400).send("No se pudieron obtener la diplomacias ")
     }
 }
 
+//La funcion es capaz de entregar la diplomacia sin importar el orden de los reinos en el parametro.
 const getDiplomacia = async (req,res) => {
     try {
         const id_reino_1 = Number(req.params.id_reino_1)
@@ -48,11 +51,13 @@ const getDiplomacia = async (req,res) => {
             res.json(diplomacia_invertida)
         }
     } catch (error) {
-        res.status(400).send("Error al obtener la diplomacia, coloca bien los parametros aweonao")
+        res.status(400).send("Error al obtener la diplomacia")
     }
     
 }
 
+
+//La funcion permite eliminar una diplomacia sin importar el orden en el que se entreguen los reinos.
 const delDiplomacia = async (req,res) => {
     try {
         const id_reino_1 = Number(req.params.id_reino_1)
@@ -78,7 +83,7 @@ const putDiplomacia = async (req,res) => {
         })
         res.status(200).send("Entidad actualizada correctamente")
     } catch (error) {
-        res.status(400).send("No se pudo modificar la entidad, entrega las wea de datos bien saco wea")
+        res.status(400).send("No se pudo modificar la entidad")
     }
 }
 
