@@ -70,6 +70,9 @@ app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDipl
 app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 app.get("/api/top5personajesConMasFuerza", ApiController.mas_fuertes)
+app.get("/api/cantidadHabitantes/:id_reino", ApiController.hab_del_reino)
+app.get("/api/gobernante", ApiController.gobernantes)
+app.get("/api/gobernante/:id_reino", ApiController.gob_del_reino)
 
 //==========================================================//
 app.get('/', (req, res) => {

@@ -6,7 +6,6 @@ const postPersonaje = async (req,res) => {
         const personaje = await prisma.personajes.create({
             data: {nombre, fuerza, fecha_nacimiento : new Date(fecha_nacimiento), objeto}
         })
-        res.json(personaje)
         res.status(200).send("Personaje creado correctamente")    
     } catch (error) {
         res.status(400).send("No se pudo crear el personaje correctamente")

@@ -34,9 +34,19 @@ const getDiplomacia = async (req,res) => {
     try {
         const id_reino_1 = Number(req.params.id_reino_1)
         const id_reino_2 = Number(req.params.id_reino_2)
+
         const diplomacia = await prisma.diplomacias.findFirst({
             where: {id_reino_1, id_reino_2}})
+
+        if (diplomacia){    
         res.json(diplomacia)
+        }
+
+        else {
+        const diplomacia_invertida = await prisma.diplomacias.findFirst({
+            where:{id_reino_1 : id_reino_2, id_reino_2 : id_reino_1}})
+            res.json(diplomacia_invertida)
+        }
     } catch (error) {
         res.status(400).send("Error al obtener la diplomacia, coloca bien los parametros aweonao")
     }
@@ -47,8 +57,10 @@ const delDiplomacia = async (req,res) => {
     try {
         const id_reino_1 = Number(req.params.id_reino_1)
         const id_reino_2 = Number(req.params.id_reino_2)
-        await prisma.diplomacias.delete({
-            where: {id_reino_1_id_reino_2 : {id_reino_1, id_reino_2}}})
+        await prisma.diplomacias.deleteMany({
+            where : {OR : [
+                {id_reino_1, id_reino_2},
+                {id_reino_1 : id_reino_2, id_reino_2 : id_reino_1}]}})
         res.status(200).send("Diplomacia eliminada de pana rey")
     } catch (error) {
         res.status(400).send("No se pudo eliminar la entidad")
@@ -77,7 +89,6 @@ const DiplomaciasController = {
     getDiplomacia,
     delDiplomacia,
     putDiplomacia
-
 }
 
 
