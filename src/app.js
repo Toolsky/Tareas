@@ -9,15 +9,8 @@ import ReinosController from './controllers/ReinosController.js';
 import HabitanteController from './controllers/HabitanteController.js';
 import DiplomaciasController from './controllers/DiplomaciasController.js';
 import ApiController from './controllers/ApiController.js';
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-import DefensaInReinos from './controllers/DefensaInReinos.js';
->>>>>>> ola
-=======
 import DefensaInReinos from './controllers/DefensaInReinos.js';
 
->>>>>>> Stashed changes
 
 const ENV = process.env;
 const app = express();
@@ -85,14 +78,10 @@ app.delete("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.delDipl
 app.put("/diplomacias/:id_reino_1/:id_reino_2", DiplomaciasController.putDiplomacia)
 
 app.get("/api/top5personajesConMasFuerza", ApiController.mas_fuertes)
-<<<<<<< Updated upstream
 app.get("/api/cantidadHabitantes/:id_reino", ApiController.hab_del_reino)
 app.get("/api/gobernante", ApiController.gobernantes)
 app.get("/api/gobernante/:id_reino", ApiController.gob_del_reino)
-
-=======
 app.get("/api/personajeConMasKarts",ApiController.mas_karts)
->>>>>>> Stashed changes
 //==========================================================//
 app.get('/', (req, res) => {
     res.json({ message: 'Hello world' });
