@@ -3,7 +3,8 @@ import prisma from '../prismaClient.js'
 const getTrabajos = async (req, res) => {
     try {
         const trabajos = await prisma.trabajos.findMany()
-        if (trabajos.length === 0) {
+        
+        if (trabajos.length === 0) {//Este condicional indica que no hay trabajos en la bd
             res.status(400).send("No hay trabajos en la BD")
             }
     else{

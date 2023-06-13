@@ -29,7 +29,7 @@ const getKarts = async(req,res) => {
         const karts = await prisma.karts.findMany()
         res.json(karts)
     } catch (error) {
-        res.status(400).send("Error al mostrar los personajes")   
+        res.status(400).send("Error al mostrar los karts")   
     }
 }
 
@@ -48,9 +48,9 @@ const delKart = async(req,res) => {
     try {
         const id = Number(req.params.id)
         await prisma.karts.delete({where: {id}})
-        res.status(200).send("Te piteaste al loco ¿que te hizo él? :(")
+        res.status(200).send("Eliminaste el kart")
     } catch (error){
-        res.status(400).send("El personaje no se pudo eliminar")
+        res.status(400).send("El kart no se pudo eliminar")
     }
 }
 

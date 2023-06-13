@@ -34,7 +34,7 @@ const getTrabajador = async (req,res) => {
         const trabajador = await prisma.personaje_tiene_trabajo.findFirst({where:{id_trabajo : Number(id_tra) , id_personaje:Number(id_per)}})
         res.json(trabajador)
     } catch (error) {
-        res.status("No se pudo mostrar la entidad, a lo mejor esta no exite")
+        res.status("No se pudo mostrar la entidad, a lo mejor esta no existe")
     }
 }
 
@@ -48,7 +48,7 @@ const putTrabajador = async (req,res) => {
             data:{fecha_inicio : new Date(fecha_inicio), fecha_termino : new Date(fecha_termino)}})
         res.status(200).send("Trabajador actualizado de pana")
     }catch(error){
-        res.status(400).send("El trabajador no se pudo modificar en vola este no existe")
+        res.status(400).send("El trabajador no se pudo,quizas no existe")
     }
 }
 
