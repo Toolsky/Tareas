@@ -3,7 +3,11 @@ import prisma from '../prismaClient.js'
 const mas_fuertes= async (req,res) => {
     try {
         const mas_fuertes = await prisma.personajes.findMany({
+<<<<<<< Updated upstream
             select: {nombre : true, fuerza : true},
+=======
+            select: {nombre: true ,fuerza : false},
+>>>>>>> Stashed changes
             orderBy : {fuerza : 'desc'},
             take : 5
         })
@@ -18,7 +22,13 @@ const mas_fuertes= async (req,res) => {
     }
 }
 
+<<<<<<< Updated upstream
 const hab_del_reino = async (req,res) => {
+=======
+
+
+const mas_karts = async (req, res) => {
+>>>>>>> Stashed changes
     try {
         const id_reino = Number(req.params.id_reino)
         const hab_reino = await prisma.personaje_habita_reino.count({
@@ -79,9 +89,13 @@ const gob_del_reino = async (req,res) => {
 
 const ApiController = {
     mas_fuertes,
+<<<<<<< Updated upstream
     hab_del_reino,
     gobernantes,
     gob_del_reino
+=======
+    mas_karts
+>>>>>>> Stashed changes
 }
 
 
